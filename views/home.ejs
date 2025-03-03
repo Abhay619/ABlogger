@@ -2,19 +2,28 @@
 <html lang="en">
 <head>
     <%- include('./partials/head.ejs') %>
-    <title>Home</title>
+    <title>BlogWorld</title>
 </head>
 <body>
     <%- include('./partials/nav.ejs') %>
+    <%- include('./partials/logo.ejs') %>
     <div class="container mt-3">
         <div class="row row-cols-3 gy-5">
         <% blogs.forEach(blog => { %>
-            <div class="col">
+            <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="card" style="width: 18rem;">
                     <img src="<%= blog.coverImageURL %>" class="card-img-top" alt="...">
                     <div class="card-body">
-                      <h5 class="card-title"><%= blog.title%></h5>
+                      <h5 class="card-title mb-4"><%= blog.title%></h5>
+                      <h6 class="card-subtitle mb-3 text-secondary"><img class="profile-img" src="<%= blog.createdBy.profileImageUrl %>" alt="" width="24px"> <%= blog.createdBy.fullName %></h6>
+                      <p class="card-text" id="blog-body"><%= blog.body.substring(0, 80)+"..."%></p>
                        <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
+                       <% if (user) { %>
+                        <% if (user.role == "ADMIN") { %>
+                            <a href="/blog/delete/<%= blog._id %>" class="btn btn-primary">Delete</a>
+                        <% } %>
+                       <% } %>
+                        
                     </div>
                   </div>
             </div>
@@ -22,5 +31,11 @@
     </div>
     </div>
     <%- include('./partials/script.ejs') %>
+    <script>
+        let text = document.getElementById("blog-body").innerText;
+        console.log(text);
+        const subArray = text.substring(0,100);
+        document.getElementById("blog-body").innerHTML = subArray;
+    </script>
 </body>
 </html>

@@ -27,7 +27,6 @@ router.get('/signin', (req, res) => {
 
 router.post("/signup", upload.single("profileImageUrl"), async (req, res) => {
     const {fullName, email, password} = req.body;
-    console.log(req.file);
     await userModel.create({
         fullName, 
         email,

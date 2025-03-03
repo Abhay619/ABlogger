@@ -22,7 +22,9 @@ app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 
 app.get("/", async (req, res) => {
-    const allBlogs = await Blog.find({});
+    const allBlogs = await Blog.find({}).populate("createdBy");
+    console.log(req.user);
+
     return res.render("home",{
         user: req.user,
         blogs: allBlogs,

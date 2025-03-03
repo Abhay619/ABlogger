@@ -25,13 +25,18 @@ router.get('/add-new', (req, res) => {
 });
 router.post('/', upload.single("coverImage"), async (req, res) => {
     const {title, body} = req.body;
-    const blog = await blogModel.create({
-        title,
-        body,
-        createdBy: req.user._id,
-        coverImageURL: `/uploads/${req.file.filename}`
-    });
-    return res.redirect(`/blog/${blog._id}`);   
+    try {
+        const blog = await blogModel.create({
+            title,
+            body,
+            createdBy: req.user._id,
+            coverImageURL: `/uploads/${req.file.filename}`
+        });
+        return res.redirect(`/blog/${blog._id}`);   
+    } catch (error) {
+        console.log(error);
+    }
+    
 });
 router.get("/:id", async (req, res) => {
     const blog = await blogModel.findById(req.params.id).populate("createdBy");
@@ -43,14 +48,30 @@ router.get("/:id", async (req, res) => {
     });
 });
 
-router.post("/comment/:blogId", async (req,res) => {
-   await commentModel.create({
-        content: req.body.content,
-        blogId: req.params.blogId,
-        createdBy: req.user._id,
-    });
-
-    return res.redirect(`/blog/${req.params.blogId}`);
+router.get("/delete/:id", async (req, res) => {
+    try {
+        await blogModel.deleteOne({_id: req.params.id,});
+        return res.redirect("/");
+    } catch (error) {
+        console.log(error);
+    }
 });
+
+router.post("/comment/:blogId", async (req,res) => {
+    try {
+        await commentModel.create({
+            content: req.body.content,
+            blogId: req.params.blogId,
+            createdBy: req.user._id,
+        });
+    
+        return res.redirect(`/blog/${req.params.blogId}`);
+        
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
 
 module.exports = router;
