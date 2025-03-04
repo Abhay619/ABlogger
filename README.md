@@ -59,7 +59,7 @@ To run this project, you will need to add the following environment variables to
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+<img width="640" alt="image" src="https://github.com/user-attachments/assets/423e15e4-ea51-4deb-ae26-5873149e8de1">
 
 
 ## Features
