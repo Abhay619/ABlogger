@@ -60,6 +60,14 @@ To run this project, you will need to add the following environment variables to
 ## Screenshots
 
 <img width="640" alt="image" src="https://github.com/user-attachments/assets/423e15e4-ea51-4deb-ae26-5873149e8de1">
+<br>
+<img width="640" alt="image" src="https://github.com/user-attachments/assets/d38ec421-5605-4639-92ee-f6f94e086acf">
+<br>
+<img width="640" alt="image" src="https://github.com/user-attachments/assets/9267e778-6fe6-4f96-8264-0bf500a3bc61">
+<br>
+<img width="215" alt="image" src="https://github.com/user-attachments/assets/45d2702f-f6c4-4f57-ac2c-2f9d7804e826" />
+<br>
+<img width="216" alt="image" src="https://github.com/user-attachments/assets/4e8a4db4-25c0-48f4-9ca6-7dec1a2760ee" />
 
 
 ## Features
